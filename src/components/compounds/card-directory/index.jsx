@@ -38,6 +38,21 @@ const CardDirectory = () => {
                     weather.map((el) => (
                         <WeatherCard weda={el} key={el.dt}/>
                     ))
+                        .reduce((accumulator, currentValue) => {
+                            // accumulator + currentValue.dt_txt
+                            const getDay = (date) => {
+                                const dayOfWeek = new Date(date).getDay();
+                                return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+                            }
+                            let currentDay = getDay((currentValue.props.weda.dt_txt))
+                            if(!accumulator[currentDay]){
+                                accumulator[currentDay] = []
+                            }
+                              accumulator[currentDay].push(currentValue.props.weda)
+                            // console.log(accumulator.length)
+                            console.log(currentDay)
+                            return accumulator
+                        } , [])
                 }
             </div>
 

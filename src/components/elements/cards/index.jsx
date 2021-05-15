@@ -18,9 +18,17 @@ export default function WeatherCard({ weda}) {
 
     function getDayOfWeek(date) {
         const dayOfWeek = new Date(date).getDay();
+
         return isNaN(dayOfWeek) ? null :
             ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+
+
     }
+     // const checkDays = ({days, weda}) => {
+     //    if (days === days){
+     //        days.reduce(())
+     //    }
+     // }
     return (
         <Card className={classes.root}>
             <CardHeader
@@ -29,6 +37,11 @@ export default function WeatherCard({ weda}) {
             <CardContent>
                 <Typography>
                     {weda.dt_txt}
+                </Typography>
+                <Typography>
+                    {
+                        weda.dt_txt
+                    }
                 </Typography>
                 <Typography>
                     {weda.main.temp_max}
