@@ -14,6 +14,8 @@ const useStyles = makeStyles({
     }
 });
 export default function WeatherCard({ weda}) {
+    // console.log(weda)
+    // console.log(weda)
     const classes = useStyles();
 
     function getDayOfWeek(date) {
@@ -22,41 +24,54 @@ export default function WeatherCard({ weda}) {
         return isNaN(dayOfWeek) ? null :
             ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
 
-
     }
-     // const checkDays = ({days, weda}) => {
-     //    if (days === days){
-     //        days.reduce(())
-     //    }
-     // }
+
+    console.log(weda)
+    // console.log(weda[0].dt)
+    console.log(weda[0].weather[0].main)
+    console.log(weda)
+    // console.log(Object.keys(weda[0].dt))
+
     return (
         <Card className={classes.root}>
             <CardHeader
-                title={getDayOfWeek(weda.dt_txt)}
+                title={getDayOfWeek(weda[0].dt_txt)}
             />
             <CardContent>
                 <Typography>
-                    {weda.dt_txt}
+
+                    {weda[0].weather[0].main}
+
                 </Typography>
                 <Typography>
-                    {
-                        weda.dt_txt
+
+                    {/*/!*{*!/  Description: {weda[0].weather[0].description}*/}
+                    {/*    weda*/}
+                    {/*}*/}
+                  Description:  {Object.values(weda).map((el,index) => (
+                        <div key={el.id}>{el.weather[0].description}</div>
+                    ))
                     }
                 </Typography>
                 <Typography>
-                    {weda.main.temp_max}
+                    {Object.values(weda).map((el,index) => (
+                        <div key={index}>{el.main.temp}</div>
+                    ) )
+
+                    }
+                    {/*{weda.main.temp_max}*/}
                 </Typography>
                 <Typography>
-                    {weda.main.temp}
+                    {/*{weda.main.temp}*/}
                 </Typography>
                 <Typography>
-                    {weda.weather.main}
+                    {/*{weda.weather.main}*/}
                 </Typography>
                 <Typography>
-                   Speed: {weda.wind.speed}
+                   {/*Speed: {weda.wind.speed}*/}
                 </Typography>
                 <Typography>
-                   Weather: {weda.weather.id}
+                   {/*Weather: {weda.weather.id}*/}
                 </Typography>
             </CardContent>
 

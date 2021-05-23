@@ -5,6 +5,7 @@ import ErrorRadios from "./components/elements/radio";
 import CssBaseline from '@material-ui/core/CssBaseline';
 // import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import {BarChart} from "@material-ui/icons";
 
 
 
@@ -19,6 +20,9 @@ function App() {
         </div>
         </Container>
       <CardDirectory/>
+      <div>
+          <BarChart/>
+      </div>
 
     </div>
   );
