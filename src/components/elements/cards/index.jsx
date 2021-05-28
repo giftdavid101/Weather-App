@@ -13,7 +13,13 @@ const useStyles = makeStyles({
 
     }
 });
-export default function WeatherCard({ weda}) {
+export default function WeatherCard({ check,index}) {
+    console.log(index)
+ let arr = []
+
+   const detail = arr.push(check)
+    console.log(detail)
+
     // console.log(weda)
     // console.log(weda)
     const classes = useStyles();
@@ -26,21 +32,23 @@ export default function WeatherCard({ weda}) {
 
     }
 
-    console.log(weda)
+    console.log(check)
+    console.log(check[0].dt)
+    // console.log(weda)
     // console.log(weda[0].dt)
-    console.log(weda[0].weather[0].main)
-    console.log(weda)
+    // console.log(weda[0].weather[0].main)
+    // console.log(weda)
     // console.log(Object.keys(weda[0].dt))
 
     return (
         <Card className={classes.root}>
             <CardHeader
-                title={getDayOfWeek(weda[0].dt_txt)}
+                title={getDayOfWeek(check[0].dt_txt)}
             />
             <CardContent>
                 <Typography>
 
-                    {weda[0].weather[0].main}
+                    {/*{check[0].weather[0].main}*/}
 
                 </Typography>
                 <Typography>
@@ -48,13 +56,13 @@ export default function WeatherCard({ weda}) {
                     {/*/!*{*!/  Description: {weda[0].weather[0].description}*/}
                     {/*    weda*/}
                     {/*}*/}
-                  Description:  {Object.values(weda).map((el,index) => (
+                  Description:  {check.map((el,index) => (
                         <div key={el.id}>{el.weather[0].description}</div>
                     ))
                     }
                 </Typography>
                 <Typography>
-                    {Object.values(weda).map((el,index) => (
+                    {check.map((el,index) => (
                         <div key={index}>{el.main.temp}</div>
                     ) )
 

@@ -1,40 +1,68 @@
 import React from 'react'
 //
-import useChartConfig from 'hooks/useChartConfig'
-import Box from 'components/Box'
-import SyntaxHighlighter from 'components/SyntaxHighlighter'
-import { Chart } from 'react-charts'
-import CardDirectory from "../card-directory";
-let sourceCode
- const Barchart = () => {
-    const { data, randomizeData } = useChartConfig({
-        series: 10,
-        dataType: 'ordinal'
-    })
-    const series = React.useMemo(
-        () => ({
-            type: 'bar'
-        }),
-        []
-    )
-    const axes = React.useMemo(
-        () => [
-            { primary: true, type: 'ordinal', position: 'left' },
-            { position: 'bottom', type: 'linear', stacked: true }
-        ],
-        []
-    )
+import {Bar, Pie, defaults } from 'react-chartjs-2'
+
+defaults.global.tooltips.enabled = false
+defaults.global.legend.position = 'bottom'
+
+const BarChart = () => {
     return (
-        <>
-            <button onClick={randomizeData}>Randomize Data</button>
-            <br />
-            <br />
-            <Box>
-                <Chart data={data} series={series} axes={axes} tooltip />
-            </Box>
-            <br />
-            <SyntaxHighlighter code={sourceCode} />
-        </>
+        <div>
+            <Bar
+                data={{
+                    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                    datasets: [
+                        {
+                            label: '# of votes',
+                            data: [12, 19, 3, 5, 2, 3],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                            ],
+                            borderWidth: 1,
+                        },
+                        // {
+                        //   label: 'Quantity',
+                        //   data: [47, 52, 67, 58, 9, 50],
+                        //   backgroundColor: 'orange',
+                        //   borderColor: 'red',
+                        // },
+                    ],
+                }}
+                height={400}
+                width={600}
+                options={{
+                    maintainAspectRatio: false,
+                    scales: {
+                        yAxes: [
+                            {
+                                ticks: {
+                                    beginAtZero: true,
+                                },
+                            },
+                        ],
+                    },
+                    legend: {
+                        labels: {
+                            fontSize: 25,
+                        },
+                    },
+                }}
+            />
+        </div>
     )
 }
-export default Barchart;
+
+export default BarChart

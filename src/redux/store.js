@@ -1,8 +1,8 @@
-import {createStore, applyMiddleware} from "redux";
-import {logger} from "redux-logger";
-import rootReducer from './root-reducer'
+import {createStore} from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';
+import { weatherState} from "./root-reducer";
 
+ const store = createStore( weatherState, composeWithDevTools())
 
-const middlewares = [logger]
-const store = createStore(rootReducer, applyMiddleware(...middlewares))
 export default store
+

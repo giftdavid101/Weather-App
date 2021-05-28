@@ -1,6 +1,5 @@
 .card-directory {
   width: 100%;
-  height: 20vh;
 }
 .card-directory .weather-div {
   display: flex;

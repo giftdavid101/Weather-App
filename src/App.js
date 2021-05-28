@@ -9,6 +9,7 @@ import {BarChart} from "@material-ui/icons";
 
 
 
+
 function App() {
 
   return (
@@ -19,11 +20,10 @@ function App() {
             <ErrorRadios/>
         </div>
         </Container>
-      <CardDirectory/>
-      <div>
-          <BarChart/>
-      </div>
-
+        <CardDirectory/>
+        <div style={{margin:"auto"}}>
+            <BarChart/>
+        </div>
     </div>
   );
 }

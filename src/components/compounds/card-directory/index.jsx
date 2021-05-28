@@ -4,75 +4,98 @@ import Axios from 'axios';
 
 import WeatherCard from "../../elements/cards";
 import Arrows from "../../elements/arrows";
-import Grid from '@material-ui/core/Grid';
 import {groupWeather} from "../../../helpers/sortWeather";
+import { connect } from 'react-redux';
+import { TOGGLE_LOADING, WEATHER_DATA } from '../../../redux/actions/weatherAction'
 
-let check;
-const CardDirectory = () => {
+let check = [];
+const CardDirectory = (props) => {
 
-    const [weather, setWeather] = useState([])
-    const [activeCards, setActiveCards] = useState([0,1,2]);
-    // const [check, setCheck] = useState([weather])
+    // const [weather, setWeather] = useState([])
+    // const [activeCards, setActiveCards] = useState([0,1,2]);
+    // console.log(setActiveCards)
+    const { siteLoading, toggleLoader, setWeatherData } = props;
 
-    const mainUrl = process.env.REACT_APP_APPID
-
-
-    const requestWeatherForecast = (link = `https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=${mainUrl}&cnt=40`) => {
-        Axios.get(link).then((response) => {
-            const {data, status} = response
-
-           check = groupWeather(data)
-
-           //  console.log(Object.values(check))
-           // let arr = Object.values(check)
-           //  weather.push(check)
-            // console.log(check)
-            // console.log(response)
-            console.log(groupWeather(data))
+    const requestWeatherForecast = () => {
+        Axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=${process.env.REACT_APP_APPID}&cnt=40`)
+            .then(({data, status}) => {
+            check = groupWeather(data)
+            console.log({data, check})
 
             if (status === 200) {
-                // groupWeather(data)
-                // groupWeather(data.list)
-              // groupWeather(setWeather(data.list))
-
-                // setWeather(data.list[0])
-               setWeather(data.list)
+               const conditions= groupWeather(data)
+               setWeatherData(conditions)
+                toggleLoader(false);
+                // const max =  Object.values(groupWeather(weather))
+                console.log()
 
               //   console.log(data.list[0])
             }
+            // check.push(max)
          // let ans =   groupWeather(data)
          //    console.log(ans)
-            console.log(setWeather(data))
+            console.log(setWeatherData(data))
             // console.log( groupWeather(data))
-            console.log( Array.from(check))
         }).catch((err) => {
             console.log(err)
         })
 
     }
+
     useEffect(() => {
         requestWeatherForecast()
         // eslint-disable-next-line
     }, [])
 
-
+    console.log(check)
     return (
         <div className={'card-directory'}>
-            <Arrows activeCards={activeCards} setActiveCards={setActiveCards}/>
+            {/*<Arrows   weather={check} activeCards={activeCards} setActiveCards={setActiveCards}/>*/}
 
             <div className={'weather-div'}>
-                {
-                    Object.values(groupWeather(weather)).map((el, index,array) => (
+                {/*{*/}
+                {/*    // Object.values(groupWeather(weather))*/}
+                {/*    // check*/}
+                {/*    activeCards*/}
 
-                        <WeatherCard weda={el} key={index}/>
+                {/*        .map((el, index,array) =>*/}
+                {/*        // setActiveCards(check[index])*/}
+                {/*        // activeCards[index]*/}
+                {/*               ( Object.values(groupWeather(weather))[index])*/}
+                {/*            ?*/}
+                {/*            (*/}
+                {/*        <WeatherCard index={index} check={ Object.values(groupWeather(weather))[index]} key={index}/>*/}
+                {/*                    // weda={el}*/}
+                {/*    )*/}
+                {/*    : undefined*/}
+                {/*    )*/}
+                {/*}*/}
 
-                    ))
-                }
+                {siteLoading ? (
+                    <div className={'site-loader'}>
+                        <p>Loading...</p>
+                    </div>
+                ) : (
+                    <>
+                        'hi'
+                        {/*<WeatherCard />*/}
+                        {/*<Chart />*/}
+                    </>
+                )}
+
             </div>
         </div>
     );
 };
+const mapStateToProps = (state) => {
+    return state;
+};
+const mapDispatchToProps = (dispatch) => ({
+    toggleLoader: (status) => dispatch(TOGGLE_LOADING(status)),
+    setWeatherData: (data) => dispatch(WEATHER_DATA(data)),
+});
 
-export default CardDirectory;
+export default connect(mapStateToProps, mapDispatchToProps)(CardDirectory);
+// export default CardDirectory;
 
 

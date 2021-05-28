@@ -4,7 +4,6 @@ import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-// import './radio.style.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -18,7 +17,6 @@ const useStyles = makeStyles((theme) => ({
         width:"100%",
         display:"flex",
         flexDirection: "row",
-        margin:"20px"
     }
 }));
 
@@ -37,7 +35,7 @@ export default function ErrorRadios() {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (value === 'temperature') {
+        if (value === 'celsius') {
             setHelperText('You got it!');
             setError(false);
         } else if (value === 'fahrenheit') {
@@ -53,7 +51,7 @@ export default function ErrorRadios() {
         <form onSubmit={handleSubmit}>
             <FormControl component="fieldset"  className={classes.formControl}>
                 <RadioGroup classes={{root:classes.root}} aria-label="quiz" name="weather" value={value} onChange={handleRadioChange}>
-                    <FormControlLabel value="temperature" control={<Radio />} label="Temperature" />
+                    <FormControlLabel value="celsius" control={<Radio />} label="Celsius" />
                     <FormControlLabel value="fahrenheit" control={<Radio />} label="Fahrenheit" />
                 </RadioGroup>
             </FormControl>
