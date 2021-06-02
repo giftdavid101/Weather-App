@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import './card-directory.style.css';
 import Axios from 'axios';
-
 import WeatherCard from "../../elements/cards";
 import Arrows from "../../elements/arrows";
 import {groupWeather} from "../../../helpers/sortWeather";
 import { connect } from 'react-redux';
 import { TOGGLE_LOADING, WEATHER_DATA } from '../../../redux/actions/weatherAction'
+import Cards from "../../elements/weatherCards";
+
 
 let check = [];
 const CardDirectory = (props) => {
@@ -20,26 +21,21 @@ const CardDirectory = (props) => {
         Axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=${process.env.REACT_APP_APPID}&cnt=40`)
             .then(({data, status}) => {
             check = groupWeather(data)
-            console.log({data, check})
+            console.log( check)
 
             if (status === 200) {
-               const conditions= groupWeather(data)
-               setWeatherData(conditions)
-                toggleLoader(false);
-                // const max =  Object.values(groupWeather(weather))
-                console.log()
-
+                const conditions = groupWeather(data);
+                setWeatherData({
+                    conditions: { today: conditions[new Date().getDate()], allDays: conditions },
+                    city: data.city,
+                });
+                console.log(conditions)
               //   console.log(data.list[0])
             }
-            // check.push(max)
-         // let ans =   groupWeather(data)
-         //    console.log(ans)
-            console.log(setWeatherData(data))
             // console.log( groupWeather(data))
         }).catch((err) => {
             console.log(err)
         })
-
     }
 
     useEffect(() => {
@@ -75,9 +71,9 @@ const CardDirectory = (props) => {
                     <div className={'site-loader'}>
                         <p>Loading...</p>
                     </div>
-                ) : (
+                ) :(
                     <>
-                        'hi'
+                        <Cards/>
                         {/*<WeatherCard />*/}
                         {/*<Chart />*/}
                     </>

@@ -64,9 +64,7 @@ export default function WeatherCard({ check,index}) {
                 <Typography>
                     {check.map((el,index) => (
                         <div key={index}>{el.main.temp}</div>
-                    ) )
-
-                    }
+                    ))}
                     {/*{weda.main.temp_max}*/}
                 </Typography>
                 <Typography>

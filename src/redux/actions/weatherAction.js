@@ -11,3 +11,10 @@ export const TOGGLE_LOADING = (status) => {
         status,
     };
 };
+
+export const UPDATE_STATE = (state) => {
+    return {
+        type: 'UPDATE_STATE',
+        state,
+    };
+};
