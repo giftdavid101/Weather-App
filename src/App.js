@@ -16,7 +16,6 @@ function App() {
   return (
     <div className="App container">
         <CssBaseline />
-
         <CardDirectory/>
         <div style={{margin:"auto"}}>
             <BarChart/>

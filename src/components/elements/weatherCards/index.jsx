@@ -9,6 +9,7 @@ import ErrorRadios from "../radio";
 import {getCurrentTime} from "../../../helpers/timee";
 import {UPDATE_STATE} from "../../../redux/actions/weatherAction";
 
+
 const avg = averageTemperature;
 const Cards = () => {
     const {
@@ -25,7 +26,7 @@ const Cards = () => {
         dispatch(UPDATE_STATE({ temp: _temp }));
     };
 
-    console.log(today)
+    console.log(avg(today))
     const [temp, setTemp] = useState({key: 'tempCel', unit: 'C'});
 
     function getDayOfWeek(date) {
@@ -57,10 +58,13 @@ const Cards = () => {
 
     return (
         <div>
-             <span>
-                {temperatureConverter(activeData?.main?.feels_like, temp.unit === 'C')}
-                {temp.unit}
-            </span>
+            {/*<div>*/}
+            {/*    <span>*/}
+            {/*    {temperatureConverter(activeData?.main?.feels_like, temp.unit === 'C')}*/}
+            {/*        {temp.unit}*/}
+            {/*    </span>*/}
+            {/*</div>*/}
+
             <Container maxWidth="sm">
                 <div className={'er'}>
                     <ErrorRadios dispatch={dispatch} setTemp={setTemp} temp={temp}/>
@@ -154,11 +158,12 @@ const Cards = () => {
                                 avg: {avg(allDays[_date])[temp.unit.toLowerCase()]}
                                 {temp.unit}
                             </p>
-                            <div>
+                            <Card>
                                 {allDays[_date].map((el, i) => (
                                     <span key={i}>{`${el[temp.key]}${[temp.unit]} `}</span>
+
                                 ))}
-                            </div>
+                            </Card>
                         </React.Fragment>
                     ))}
 
