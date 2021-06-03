@@ -14,13 +14,16 @@ import VerticalBar from "./components/compounds/barchart";
 function App() {
 
   return (
-    <div className="App container">
-        <CssBaseline />
-        <CardDirectory/>
-        <div style={{margin:"auto"}}>
-            <BarChart/>
-            <VerticalBar/>
+    <div className="App" style={{backgroundImage:`url(/images/beach.jpg)`}} >
+        <div className={'container'}>
+            <CssBaseline />
+            <CardDirectory/>
+            <div style={{margin:"auto"}}>
+                <BarChart/>
+                <VerticalBar/>
+            </div>
         </div>
+
     </div>
   );
 }

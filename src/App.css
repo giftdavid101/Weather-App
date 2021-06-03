@@ -10,7 +10,11 @@
     align-content: center;
   }
   .App{
-      background-color: deepskyblue;
+      width: 100%;
+      height: 100vh;
+      background-position: center;
+      background-size: cover;
+
   }
   .container{
       width: 100%;

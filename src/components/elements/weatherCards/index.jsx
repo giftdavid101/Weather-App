@@ -8,10 +8,33 @@ import Container from "@material-ui/core/Container";
 import ErrorRadios from "../radio";
 import {getCurrentTime} from "../../../helpers/timee";
 import {UPDATE_STATE} from "../../../redux/actions/weatherAction";
+import './weatherCards.styles.css'
+import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 
 
+
+const useStyles = makeStyles({
+    root: {
+        minWidth: 275,
+    },
+    bullet: {
+        display: 'inline-block',
+        margin: '0 2px',
+        transform: 'scale(0.8)',
+    },
+    title: {
+        fontSize: 14,
+    },
+    pos: {
+        marginBottom: 12,
+    },
+});
 const avg = averageTemperature;
 const Cards = () => {
+    const classes = useStyles();
     const {
         weatherData: {
             conditions: {today, allDays},
@@ -112,7 +135,7 @@ const Cards = () => {
             <Button variant="contained" color="pink" onClick={handlePagination(3)}>
                 Next
             </Button>
-            <div>
+            <div className={'card-style'}>
                 {/*{allDays &&*/}
                 {/*peekDays(allDays)*/}
                 {/*    .slice(paginate.x, paginate.y)*/}
@@ -146,24 +169,45 @@ const Cards = () => {
 
                 {/*        </>*/}
                 {/*    ))}*/}
-
+                <Card className={classes.root}>
+                    <CardContent>
+                        <Typography className={classes.title} color="textSecondary" gutterBottom>
+                            Word of the Day
+                        </Typography>
+                        <Typography className={classes.pos} color="textSecondary">
+                            adjective
+                        </Typography>
+                        <Typography variant="body2" component="p">
+                            well meaning and kindly.
+                            <br />
+                            {'"a benevolent smile"'}
+                        </Typography>
+                    </CardContent>
+                    <CardActions>
+                        <Button size="small">Learn More</Button>
+                    </CardActions>
+                </Card>
 
                 {allDays &&
                 peekDays(allDays)
                     .slice(paginate.x, paginate.y)
                     .map((_date, i) => (
                         <React.Fragment key={i}>
-                            <p>{_date}</p>
-                            <p>
-                                avg: {avg(allDays[_date])[temp.unit.toLowerCase()]}
-                                {temp.unit}
-                            </p>
-                            <Card>
-                                {allDays[_date].map((el, i) => (
-                                    <span key={i}>{`${el[temp.key]}${[temp.unit]} `}</span>
+                            <div>
 
-                                ))}
-                            </Card>
+                                <p>{_date}</p>
+                                <p>
+                                    avg: {avg(allDays[_date])[temp.unit.toLowerCase()]}
+                                    {temp.unit}
+                                </p>
+                                <div>
+                                    {allDays[_date].map((el, i) => (
+                                        <div key={i}>{`${el[temp.key]}${[temp.unit]} `}</div>
+
+                                    ))}
+                                </div>
+                            </div>
+
                         </React.Fragment>
                     ))}
 
