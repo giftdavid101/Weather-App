@@ -10,7 +10,6 @@ const Arrows = ({activeCards,setActiveCards,weather,check, lent}) => {
 
     console.log(activeCards)
     const moveNext = () =>  {
-        const maxCards = activeCards.length;
         if(activeCards >= 6) return;
         const next = activeCards.map(el => (el + 3));
 

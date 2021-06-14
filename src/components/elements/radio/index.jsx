@@ -1,11 +1,11 @@
-import React,{useState} from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
-import {UPDATE_STATE} from "../../../redux/actions/weatherAction";
-import {useDispatch} from "react-redux";
+// import {UPDATE_STATE} from "../../../redux/actions/weatherAction";
+// import {useDispatch} from "react-redux";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,38 +34,42 @@ export default function ErrorRadios({setTemp, temp}) {
 
 
     const classes = useStyles();
-    const [currentTemp, setCurrentTemp] = useState('f')
-    const [value, setValue] = React.useState('');
-    const [error, setError] = React.useState(false);
-    const [helperText, setHelperText] = React.useState('Choose wisely');
+    // const [currentTemp, setCurrentTemp] = useState('f')
+    const [value, setValue] = React.useState('f');
+    // const [error, setError] = React.useState(false);
+    // const [helperText, setHelperText] = React.useState('Choose wisely');
 
     const handleRadioChange = (event) => {
         setValue(event.target.value);
-        setHelperText('');
-        setError(false);
+        // setHelperText('');
+        // setError(false);
 
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        if (value === 'celsius') {
-            setHelperText('You got it!');
-            setError(false);
-
-        } else if (value === 'fahrenheit') {
-            setHelperText('Sorry, wrong answer!');
-            setError(true);
-        } else {
-            setHelperText('Please select an option.');
-            setError(true);
-        }
+        // if (value === 'celsius') {
+        //     setHelperText('You got it!');
+        //     setError(false);
+        //
+        // } else if (value === 'fahrenheit') {
+        //     setHelperText('Sorry, wrong answer!');
+        //     setError(true);
+        // } else {
+        //     setHelperText('Please select an option.');
+        //     setError(true);
+        // }
     };
 
     return (
         <form onSubmit={handleSubmit}>
             <FormControl component="fieldset"  className={classes.formControl}>
-                <RadioGroup classes={{root:classes.root}} aria-label="quiz" name="weather" value={value} onChange={handleRadioChange}>
+                <RadioGroup classes={{root:classes.root}} aria-label="quiz"
+                            name="weather"
+                            value={value}
+                            onChange={handleRadioChange}
+                >
                     <FormControlLabel
                         value="celsius"
                         onChange={toggleTemp}

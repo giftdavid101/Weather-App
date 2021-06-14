@@ -64,6 +64,7 @@ const VerticalBar = () => {
                 datasets: [{...data.datasets[0], data: today.map((el) => +el[tempView.value])}]
             })
         }
+        // eslint-disable-next-line
     }, [today])
 
     return (

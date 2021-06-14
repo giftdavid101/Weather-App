@@ -5,7 +5,7 @@ import {Button, Card} from "@material-ui/core";
 import {averageTemperature} from "../../../helpers/averageTemp";
 import ErrorRadios from "../radio";
 import {getCurrentTime} from "../../../helpers/timee";
-import {UPDATE_STATE} from "../../../redux/actions/weatherAction";
+// import {UPDATE_STATE} from "../../../redux/actions/weatherAction";
 import './weatherCards.styles.css'
 import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
@@ -48,10 +48,10 @@ const Cards = () => {
     console.log(activeData.dt_txt)
 
 
-    const toggleTemp = () => {
-        const _temp = temp.key === 'tempCel' ? {key: 'tempFahr', unit: 'F'} : {key: 'tempCel', unit: 'C'};
-        dispatch(UPDATE_STATE({temp: _temp}));
-    };
+    // const toggleTemp = () => {
+    //     const _temp = temp.key === 'tempCel' ? {key: 'tempFahr', unit: 'F'} : {key: 'tempCel', unit: 'C'};
+    //     dispatch(UPDATE_STATE({temp: _temp}));
+    // };
 
 
     console.log(avg(today))
@@ -86,8 +86,8 @@ const Cards = () => {
     };
     console.log(peekDays(allDays))
     console.log(allDays)
-    let arr;
-    const timeNow = new Date().toString().split(" ")[4];
+    // let arr;
+    // const timeNow = new Date().toString().split(" ")[4];
 
 
     return (

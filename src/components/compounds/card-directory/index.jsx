@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import './card-directory.style.css';
 import Axios from 'axios';
-import WeatherCard from "../../elements/cards";
-import Arrows from "../../elements/arrows";
+// import WeatherCard from "../../elements/cards";
+// import Arrows from "../../elements/arrows";
 import {groupWeather} from "../../../helpers/sortWeather";
 import { connect } from 'react-redux';
 import { TOGGLE_LOADING, WEATHER_DATA } from '../../../redux/actions/weatherAction'
@@ -11,19 +11,20 @@ import Cards from "../../elements/weatherCards";
 
 let check = [];
 const CardDirectory = (props) => {
-    const [value, setValue] = useState("");
-    const [city, setCity] = useState("Lagos");
-    const [typeCity, setTypeCity] = useState("");
+    // const [value, setValue] = useState("");
+    // const [city, setCity] = useState("Lagos");
+    // const [typeCity, setTypeCity] = useState("");
     // const [img, setImg] = useState("");
 
-    const citySelect = (e) => {
-        e.preventDefault();
-        setCity(typeCity);
-    };
+    // const citySelect = (e) => {
+    //     e.preventDefault();
+    //     setCity(typeCity);
+    // };
     // const [weather, setWeather] = useState([])
     // const [activeCards, setActiveCards] = useState([0,1,2]);
     // console.log(setActiveCards)
-    const { siteLoading, toggleLoader, setWeatherData } = props;
+    //toggleLoader
+    const { siteLoading,  setWeatherData } = props;
 
     const requestWeatherForecast = () => {
         Axios.get('https://api.jsonbin.io/v3/b/60c71fdf98ca6c704eaf6aef', {headers:{"X-Master-Key": '$2b$10$6J6GKAo2prhIp8YjANPyUe2u6BskS09atZVcOvXwL2yRmIWiBECYm'}})
@@ -37,7 +38,6 @@ const CardDirectory = (props) => {
 
             if (status === 200) {
                 const conditions = groupWeather(data);
-                const xLabels = []
 
                 setWeatherData({
                     conditions: { today: conditions[new Date().getDate()],
@@ -57,7 +57,7 @@ const CardDirectory = (props) => {
     useEffect(() => {
         requestWeatherForecast()
         // eslint-disable-next-line
-    }, [city])
+    }, [])
 
     console.log(check)
     return (
