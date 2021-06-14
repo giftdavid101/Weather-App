@@ -11,22 +11,38 @@ import Cards from "../../elements/weatherCards";
 
 let check = [];
 const CardDirectory = (props) => {
+    const [value, setValue] = useState("");
+    const [city, setCity] = useState("Lagos");
+    const [typeCity, setTypeCity] = useState("");
+    // const [img, setImg] = useState("");
 
+    const citySelect = (e) => {
+        e.preventDefault();
+        setCity(typeCity);
+    };
     // const [weather, setWeather] = useState([])
     // const [activeCards, setActiveCards] = useState([0,1,2]);
     // console.log(setActiveCards)
     const { siteLoading, toggleLoader, setWeatherData } = props;
 
     const requestWeatherForecast = () => {
-        Axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Munich,de&APPID=${process.env.REACT_APP_APPID}&cnt=40`)
+        Axios.get('https://api.jsonbin.io/v3/b/60c71fdf98ca6c704eaf6aef', {headers:{"X-Master-Key": '$2b$10$6J6GKAo2prhIp8YjANPyUe2u6BskS09atZVcOvXwL2yRmIWiBECYm'}})
+            .then((res)=>{
+                console.log(res)
+            })
+        Axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Lagos,ng&APPID=${process.env.REACT_APP_APPID}&cnt=40`)
             .then(({data, status}) => {
             check = groupWeather(data)
             console.log( check)
 
             if (status === 200) {
                 const conditions = groupWeather(data);
+                const xLabels = []
+
                 setWeatherData({
-                    conditions: { today: conditions[new Date().getDate()], allDays: conditions },
+                    conditions: { today: conditions[new Date().getDate()],
+                                  allDays: conditions
+                                 },
                     city: data.city,
                 });
                 console.log(conditions)
@@ -41,32 +57,15 @@ const CardDirectory = (props) => {
     useEffect(() => {
         requestWeatherForecast()
         // eslint-disable-next-line
-    }, [])
+    }, [city])
 
     console.log(check)
     return (
         <div className={'card-directory'}>
+
             {/*<Arrows   weather={check} activeCards={activeCards} setActiveCards={setActiveCards}/>*/}
 
             <div className={'weather-div'}>
-                {/*{*/}
-                {/*    // Object.values(groupWeather(weather))*/}
-                {/*    // check*/}
-                {/*    activeCards*/}
-
-                {/*        .map((el, index,array) =>*/}
-                {/*        // setActiveCards(check[index])*/}
-                {/*        // activeCards[index]*/}
-                {/*               ( Object.values(groupWeather(weather))[index])*/}
-                {/*            ?*/}
-                {/*            (*/}
-                {/*        <WeatherCard index={index} check={ Object.values(groupWeather(weather))[index]} key={index}/>*/}
-                {/*                    // weda={el}*/}
-                {/*    )*/}
-                {/*    : undefined*/}
-                {/*    )*/}
-                {/*}*/}
-
                 {siteLoading ? (
                     <div className={'site-loader'}>
                         <p>Loading...</p>
@@ -74,8 +73,6 @@ const CardDirectory = (props) => {
                 ) :(
                     <>
                         <Cards/>
-                        {/*<WeatherCard />*/}
-                        {/*<Chart />*/}
                     </>
                 )}
 
@@ -92,6 +89,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardDirectory);
-// export default CardDirectory;
+
 
 

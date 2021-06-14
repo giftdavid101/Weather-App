@@ -18,3 +18,9 @@ export const UPDATE_STATE = (state) => {
         state,
     };
 };
+export const TOGGLE_TEMP_VIEW = () => {
+    return {
+        type: 'TOGGLE_TEMP_VIEW',
+
+    }
+}

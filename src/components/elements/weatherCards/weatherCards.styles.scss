@@ -1,4 +1,221 @@
-.card-styles{
+.city{
+  color:darkorange;
+}
+.first-layout{
   display: flex;
-  background: cyan;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.card-style{
+  width: 100%;
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.card-dir{
+  //width: 100%;
+  display: flex;
+}
+.btn_div{
+float: right;
+  margin: 0 20px 0 0;
+}
+.today {
+display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+&_avgTemp{
+ font-size: 100px;
+  color: white;
+}
+  &_celsius{
+    font-size:105px;
+    color: white;
+  }
+}
+.weather_description{
+  font-size: 30px;
+  color: wheat;
+}
+.weekday{
+  color: #d74716;
+}
+.time{
+  color:wheat
+}
+.today-time{
+  font-weight: bold;
+  color: darkgoldenrod;
+}
+.we{
+  color:orange;
+}
+.weather-desc{
+  color:white
+}
+.date{
+  font-size: 20px;
+}
+.mobile{
+  display: none;
+}
+
+
+.temps{
+  display: flex;
+
+}
+.s{
+  margin: 10px;
+}
+
+@media screen and (max-width:900px ){
+.normal-screen{
+  display: none;
+}
+.m-city{
+  font-size: 15px;
+}
+  .mobile{
+    display: block;
+  }
+  .m-temperature{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  background: orange;
+    font-size: 30px;
+
+  }
+  .m-today_avgTemp{
+    font-size: 20px;
+    color: wheat;
+  }
+  .m-today_celsius{
+    color: wheat;
+   font-size: 20px;
+    font-weight: bold;
+  }
+  .m-weather_description{
+    font-size: 50px;
+    color: whitesmoke;
+  }
+  .mobile-cards-dir{
+    width: 100%;
+  }
+  .mobile-card{
+    width: 100%;
+  }
+  .mobile-time-today{
+    font-weight: bold;
+    color: darkgoldenrod;
+  }
+  .smaller-screen{
+    display: none;
+  }
+  .weather-data9h{
+   display: flex;
+
+  }
+  .weather-data4h{
+    display: none;
+  }
+
+}
+@media screen and (max-width: 450px){
+  .mobile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  .sm-screen-4h{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .weather-data9h{
+    display: none;
+  }
+  .weather-data4h{
+    display: block;
+  }
+  .mobile-cards-dir{
+  }
+  .weekday{
+    color: #c7aaa0;
+  }
+  .date{
+    color: darkgoldenrod;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .weather-desc{
+    font-size: 21px;
+  }
+  .btn{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: none;
+    background: #754a65;
+    margin: 20px 1px 20px 1px ;
+  }
+  .m-temp{
+    color: #06000c;
+
+  }
+  .m-city{
+    font-size: 30px;
+    color: brown;
+
+  }
+  //.d-top{
+  //  background: white;
+  //
+  //}
+  .mobile-card{
+    background:#754a65;
+    border: 1px solid #715b31;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  input{
+    margin: 20px 0  20px 0;
+    padding: 8px;
+    border-radius: 5px;
+    background: transparent;
+    border: 1px solid #754a65;
+  }
+  .m-temperature{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: orange;
+    font-size: 30px;
+
+  }
+  .m-today_avgTemp{
+    font-size: 14px;
+    color: wheat;
+  }
+  .m-today_celsius{
+    color: wheat;
+    font-size: 14px;
+    font-weight: bold;
+  }
 }

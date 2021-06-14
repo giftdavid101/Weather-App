@@ -1,13 +1,16 @@
-import React from 'react';
-import { Bar } from 'react-chartjs-2';
+import React, {useEffect, useState} from 'react';
+import {Bar} from 'react-chartjs-2';
+import {useSelector} from "react-redux";
+import {dateConverter} from "../../../helpers/dateCoverter";
+import './verticalbar.style.css'
 
 
-     const data = {
+const ChartData = {
+    type: 'bar',
     labels: ['00', '3:00', 'Yellow', 'Green', 'Purple', 'Orange'],
 
     datasets: [
         {
-            label: 'Temperature in Celsius',
             data: [12, 19, 3, 5, 2, 3],
             backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
@@ -43,19 +46,34 @@ const options = {
 };
 
 const VerticalBar = () => {
+    const {conditions: {today}, state: {tempView}} = useSelector(({weatherData, weatherDataState}) => ({
+        conditions: weatherData.conditions,
+        state: weatherDataState,
 
+
+    }))
+
+    const [data, setData] = useState(ChartData)
+
+
+    useEffect(() => {
+        if (today) {
+            setData({
+                ...data,
+                labels: today.map((el) => dateConverter(el.dt).time.slice(0, 5)),
+                datasets: [{...data.datasets[0], data: today.map((el) => +el[tempView.value])}]
+            })
+        }
+    }, [today])
 
     return (
-    <>
-        <div className='header'>
-            <h1 className='title'>Vertical Bar Chart</h1>
-            <div className='links'>
-                <span>Temperature</span>
+        <div className={'bar'}>
+            <div className='header'>
+                <h3 className='title'>Temperature and Celsius Chart </h3>
             </div>
+            <Bar data={data} options={options} type={''}/>
         </div>
-        <Bar data={data} options={options} />
-    </>
-);
+    );
 }
 
 export default VerticalBar;

@@ -10,12 +10,19 @@ export const dateConverter = (dateString) => {
     epoch.setUTCSeconds(dateString)
     let date = new Date(epoch)
     const [m, d, y] = new Date(date).toDateString().split(' ').splice(1)
+
     return {
         date,
         time: new Date(date).toUTCString().split(' ')[4],
         dateFormat: `${d} ${m} ${y.slice(-2)}`,
         calDate: function () {
             return this.date.getDate()
+            // return this.dateFormat
+            // return {
+            //   datee:  this.date.getDate(),
+            //   pDate: this.dateFormat
+            // }
+
         },
     }
 }

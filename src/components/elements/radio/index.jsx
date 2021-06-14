@@ -11,14 +11,19 @@ import {useDispatch} from "react-redux";
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(3),
+        color: "white",
+
     },
     radioGroup:{
-       flexDirection: theme.rows
+       flexDirection: theme.rows,
+
     },
     root:{
         width:"100%",
         display:"flex",
         flexDirection: "row",
+        // color: "white",
+        backgroundColor: "white"
     }
 }));
 

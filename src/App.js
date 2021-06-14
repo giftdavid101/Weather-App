@@ -7,6 +7,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import {BarChart} from "@material-ui/icons";
 import VerticalBar from "./components/compounds/barchart";
+import {dayNight} from "./helpers/changeDay";
 
 
 
@@ -14,14 +15,16 @@ import VerticalBar from "./components/compounds/barchart";
 function App() {
 
   return (
-    <div className="App" style={{backgroundImage:`url(/images/beach.jpg)`}} >
-        <div className={'container'}>
-            <CssBaseline />
-            <CardDirectory/>
-            <div style={{margin:"auto"}}>
-                <BarChart/>
-                <VerticalBar/>
+    <div className="App " style={{backgroundImage:`url(${dayNight()})`}}>
+        <div className={'web-screen'} >
+            <div  className={' large-screen container'}>
+                <CssBaseline />
+                <CardDirectory/>
             </div>
+        </div>
+
+        <div className={'mobile-weather'} style={{backgroundImage:`url(/images/mobile.jpg`}}>
+
         </div>
 
     </div>
