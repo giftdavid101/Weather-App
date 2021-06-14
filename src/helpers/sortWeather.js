@@ -75,10 +75,10 @@ import {temperatureConverter} from "./teperatureConverter";
  * @returns {object}
  */
 export const groupWeather = (response) => {
-    const getDay = (date) => {
-        const dayOfWeek = new Date(date).getDay();
-        return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
-    }
+    // const getDay = (date) => {
+    //     const dayOfWeek = new Date(date).getDay();
+    //     return isNaN(dayOfWeek) ? null : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'][dayOfWeek];
+    // }
     try {
         const { list } = response
         console.log(response)

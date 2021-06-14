@@ -31,7 +31,7 @@ const CardDirectory = (props) => {
             .then((res)=>{
                 console.log(res)
             })
-        Axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Lagos,ng&APPID=${process.env.REACT_APP_APPID}&cnt=40`)
+        Axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=Abuja,ng&APPID=${process.env.REACT_APP_APPID}&cnt=40`)
             .then(({data, status}) => {
             check = groupWeather(data)
             console.log( check)
